@@ -1,0 +1,84 @@
+<html>
+    <head>
+       <meta charset="UTF-8">
+        <title>LocoPy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        
+        <link rel="icon" href="/static/images/fevicon.jfif" type="images/jfif" sizes="16*16">
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+
+    <body data-spy="scroll" data-target="#mynavbar">
+        <div id="mynavbar" class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1 class="logo">LocoPy</h1>
+                    </div>
+                    <div class="col-md-9 order-md-first">
+                          <ul id="menu" >
+                              <li><a href="{{url_for('home')}}">Home</a></li>
+                              <li><a href="{{url_for('about')}}">About</a></li>
+                              <li><a href="{{url_for('why')}}">Why</a></li>
+                              <li><a href="{{url_for('play')}}">Play</a></li>
+                              <li><a href="{{url_for('learn')}}">Learn</a></li>
+                              <li><a href="{{url_for('speech')}}"><img src="/static/images/mic.png" height="20px" width="20px" ></a></li>
+                              <button class="btn btn-primary "><a href="#">Login</a></button>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block content %}
+
+        <div class="container section1 " id="Home">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="/static/images/banner1.jfif" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/static/images/banner1.jfif" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/static/images/banner1.jfif" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>  
+            </div>
+
+
+        {% endblock %}
+      <div id="footer">
+            <div class="row" style="width: 85%;  margin:auto;">
+                <div class="col-10">copyright@2021 LocoPy Limited.</div>
+                <div class="col-2">
+                    <ul class="social-icons" style="margin-left: 105px;">
+                         <li><a href="" class="fa fa-facebook-square"></a></li>
+                         <li><a href="" class="fa fa-twitter-square"></a></li>
+                         <li><a href="" class="fa fa-linkedin-square"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       </div>
+
+    </body>
+<html>
