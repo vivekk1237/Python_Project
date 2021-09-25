@@ -1,0 +1,138 @@
+/* index Page */
+a{
+    text-decoration: none;
+}
+.container{
+    /* height: 650px; */
+    margin-top: 10px;
+}
+.header{
+  color: white;
+  background-color:rgba(53, 32, 194,0.5);
+  height: 65px;
+  margin-bottom: 5px;
+}
+
+#mynavbar{
+   position:sticky;
+   z-index:9999;
+   top:0%; 
+}
+#logo{
+    font-size: 3rem;
+    float: right;
+    margin-right: 20px;
+    color:(1,1,1,0.7);
+}
+
+#menu{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;  
+}
+
+#menu li{
+    display: inline-block;
+}
+#menu li a{
+  color: white;
+  padding: 15px 10px;
+  display: block ;
+  font-weight: bolder;
+}
+#menu li a:hover{
+    color: black;
+}
+#menu button a{
+    color:white;
+    font-weight: bolder;
+    padding: 15px 10px;
+}
+
+.section{
+    /* border: 2px solid black; */
+    width: 85%;
+    margin:auto;
+    margin-top: 10px;
+    /* height: 300px; */
+}
+.section h2.section-head{
+    color:#000;
+    text-align: center;
+    margin-bottom: 40px;
+    }
+    
+
+.section h2.section-head:after{
+    background:#e74c3c ;
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    margin: 20px auto;
+}
+.section h2.section-heading{
+    color:#000;
+    margin-bottom: 50px;
+}
+.section h2.section-heading:after{
+    background:blue;
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    margin-top: 20px;
+    /* margin: 20px auto; */
+}
+
+#footer{
+    background:#2c3e50;
+    color:#fff;
+    padding:15px 10px;
+    margin-top: 40px;
+}
+.social-icons{
+    list-style: none;
+    color:#fff;
+    margin:0;
+    padding:0;
+}
+
+.social-icons li{
+    display: inline-block;
+    padding-left: 5px;
+ 
+}
+
+.social-icons li a{
+    color:white;
+    font-size:23px ;
+
+}
+/* Level Pages*/
+.mainbody{
+    background:url('images/about-shape-1.svg') no-repeat 0 0;
+    background-size: cover;
+    position:relative;
+}
+.mainbody .inner{
+    background-image: linear-gradient(
+         140deg, #EADEDB 10%,rgba(120, 111, 166,0.7) 50%,rgba(64, 64, 122,0.8) 70%);
+         width: 90%;
+         margin: auto;
+         padding: 30px;
+        
+}
+.mainbody .inner h3:after{
+    background:#0d6efd;
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    margin-top: 5px;
+}
+
+.gamecard{
+    margin: 50px auto;
+    
+}
