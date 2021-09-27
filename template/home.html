@@ -13,12 +13,23 @@
 
     <body data-spy="scroll" data-target="#mynavbar">
         <div id="mynavbar" class="header">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-5">
+                        <span><div class="action">
+                          <img src="/static/images/avatar.png" onclick="menutoggle();" class="profile" />
+                        <div class="menu1"> 
+                           <ul>
+                               <li><a href="#"> My Profile</a></li>
+                               <li><a href="#"> Edit</a></li>
+                               <li><a href="#"> Settings</a></li>
+                               <li><a href="#"> Log Out</a></li>
+                           </ul>
+                        </div>
+                      </div></span>
                         <h1 class="logo">LocoPy</h1>
                     </div>
-                    <div class="col-md-9 order-md-first">
+                    <div class="col-7 order-md-first">
                           <ul id="menu" >
                               <li><a href="{{url_for('home')}}">Home</a></li>
                               <li><a href="{{url_for('about')}}">About</a></li>
@@ -79,6 +90,11 @@
             </div>
         </div>
        </div>
-
+       <script>
+           function menutoggle(){
+             const toggleMenu = document.querySelector(".menu1");
+             toggleMenu.classList.toggle("active");
+           }
+        </script>
     </body>
 <html>
