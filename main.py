@@ -2,7 +2,7 @@ from flask import Flask,render_template,url_for,redirect,flash,request
 import speech_recognition as sr
 import pyttsx3
 import datetime
-from game import rockPaperScissor,guessingNumber
+from game import rockPaperScissor,guessingNumber,Snake
 
 app=Flask(__name__,template_folder='template')
 
@@ -170,7 +170,7 @@ def registered():
 @app.route("/rockpaperscissor")
 def rps():
     rockPaperScissor.rockPaperScissor()
-    return render_template('Level1.html')
+    return redirect(url_for('level1'))
 
 @app.route("/forgot")
 def updated():
@@ -199,7 +199,12 @@ def updated():
 @app.route("/numberguessing")
 def guess():
     guessingNumber.guessing()
-    return render_template('Level1.html')
+    return redirect(url_for('level1'))
+
+@app.route("/snake")
+def snakegame():
+    Snake.main()
+    return redirect(url_for('level2'))
 
 
 if __name__=='__main__':
