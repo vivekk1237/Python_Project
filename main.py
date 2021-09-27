@@ -1,12 +1,7 @@
-from flask import Flask,render_template,url_for,redirect
+from flask import Flask,render_template,url_for,redirect,flash,request
 import speech_recognition as sr
 import pyttsx3
 import datetime
-import tkinter as tk
-from tkinter import *
-import tkinter.font as font
-from tkinter import messagebox as tkMessageBox
-import random
 from game import rockPaperScissor,guessingNumber
 
 app=Flask(__name__,template_folder='template')
@@ -117,11 +112,88 @@ def why():
 @app.route("/login")
 def login():
     return render_template('login.html')
-     
+
+
+@app.route("/forgotpassword")
+def forgot():
+    return render_template('forgot.html')
+
+@app.route("/registration")
+def register():
+    return render_template('Reg.html')
+@app.route("/home")
+def logged():
+    username=request.args.get('username')
+    password=request.args.get('pass')
+    if(username==''):
+        if(password==''):
+            user="*Username can't be empty"
+            passw="*Password can't be empty"
+            return render_template('login.html',username=user,password=passw)
+        else:
+            user="*Username can't be empty"
+            return render_template('login.html',username=user,password="")
+    else:
+        if(password==''):
+            passw="*Password can't be empty"
+            return render_template('login.html',username="",password=passw)
+        else:
+            return redirect(url_for('home')) 
+
+@app.route("/registered")
+def registered():
+    first=request.args.get("fname")
+    last=request.args.get("lname")
+    email=request.args.get("email")
+    password=request.args.get("pass")
+    confirm=request.args.get("confirm")
+    check=request.args.get("checkbox")
+    if(first==""):
+        return render_template('Reg.html',first="*First Name can't be empty")
+    elif(email==""):
+        return render_template('Reg.html',email="*Email can't be empty")
+    elif(password==""):
+        return render_template('Reg.html',password="*Password can't be empty")
+    elif(confirm==""):
+        return render_template('Reg.html',confirm="*Confirm Password can't be empty")
+    else:
+        if(password==confirm):
+            if(len(password)<6):
+                return render_template('Reg.html',password="*Password must be atleast 6 characters")
+            elif(check=="on"):
+                return redirect(url_for('login'))
+            else:
+                return render_template('Reg.html',checked="*Checkbox must be checked")
+        else:
+            return render_template('Reg.html',confirm="*Confirm Password and Password didn't match")
+
 @app.route("/rockpaperscissor")
 def rps():
     rockPaperScissor.rockPaperScissor()
     return render_template('Level1.html')
+
+@app.route("/forgot")
+def updated():
+    name=request.args.get("fullname")
+    username=request.args.get("username")
+    password=request.args.get("password")
+    confirm=request.args.get("confirm")
+    if(name==""):
+        return render_template('forgot.html',name="*Name can't be empty")
+    elif(username==""):
+        return render_template('forgot.html',username="*Username can't be empty")
+    elif(password==""):
+        return render_template('forgot.html',password="*New Password can't be empty")
+    elif(confirm==""):
+        return render_template('forgot.html',confirm="*Confirm Password can't be empty")
+    else:
+        if(password==confirm):
+            if(len(password)<6):
+                return render_template('forgot.html',password="*New Password must be atleast 6 characters")
+            else:
+                return redirect(url_for('login'))
+        else:
+            return render_template('forgot.html',confirm="*Confirm Password and Password didn't match")
 
 
 @app.route("/numberguessing")
