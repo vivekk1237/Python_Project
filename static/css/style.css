@@ -8,7 +8,7 @@ a{
 }
 .header{
   color: white;
-  background-color:rgba(53, 32, 194,0.5);
+  background-color:#7e6dfd;
   height: 65px;
   margin-bottom: 5px;
 }
@@ -18,11 +18,72 @@ a{
    z-index:9999;
    top:0%; 
 }
-#logo{
+.logo{
     font-size: 3rem;
     float: right;
-    margin-right: 20px;
+    margin-right: 80px;
     color:(1,1,1,0.7);
+}
+
+
+.profile{
+    width:50px;
+    height:50px;
+    border-radius:100px;
+    margin-bottom:10px;
+    margin-top: -10px;
+}
+.action{
+    position:fixed;
+    top:20px;
+    right:20px;
+    cursor: pointer;
+}
+.action .menu1{
+    position: absolute;
+    top :100px;
+    right:-10px;
+    padding:10px 20px;
+    background:#7e6dfd;
+    width:150px;
+    box-sizing: 0 5px 25px rgba(0,0,0,0.1);
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.action .menu1.active{
+    top:60px;
+    visibility: visible;
+    opacity: 1;
+
+}
+.action .menu1::before{
+    content: "";
+    position: absolute;
+    top:-5px;
+    right: 28px;
+    width: 20px;
+    height: 20px;
+    background: #7e6dfd;
+    transform: rotate(45deg);
+}
+.action .menu1 ul li{
+      list-style: none;
+      padding: 10px 0;
+      border-bottom:1px solid white;
+      direction: flex;
+      align-items: center;
+}
+.action .menu1 ul li a{
+    display: inline-block;
+    text-decoration: none;
+    color:#555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+.action .menu1 ul li:hover a{
+     color:#ff5d94;
 }
 
 #menu{

@@ -1,16 +1,35 @@
 from flask import Flask,render_template,url_for,redirect,flash,request
+from flask_sqlalchemy import SQLAlchemy
 import speech_recognition as sr
 import pyttsx3
 import datetime
 from game import rockPaperScissor,guessingNumber,Snake
 
 app=Flask(__name__,template_folder='template')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///LocoPy.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    username = db.Column(db.String(80), unique=True, nullable=False,primary_key=True)
+    firstname = db.Column(db.String(30), nullable=False)
+    lastname = db.Column(db.String(30))
+    fullname= db.Column(db.String(60))
+    password = db.Column(db.String(80), nullable=False)
+    repassword = db.Column(db.String(80), nullable=False)
 
 
+    def __repr__(self) -> str:
+        return f"{self.fullname} and {self.username}"
 
 @app.route("/")
 def home():
     return render_template('home.html')
+
+
+@app.route("/home/<username>")
+def userhome(username):
+    return render_template('userhome.html',user=username)
 
 
 @app.route("/voiceerror")
@@ -79,35 +98,50 @@ def wishMe():
     else:
         speak("Good Evening Sir !") 
 
-@app.route("/level1")
-def level1():
-    return render_template('Level1.html')
+@app.route("/level1/<username>")
+def level1(username):
+    return render_template('Level1.html',user=username)
 
-@app.route("/level2")
-def level2():
-    return render_template('Level2.html')
+@app.route("/level2/<username>")
+def level2(username):
+    return render_template('Level2.html',user=username)
 
-@app.route("/level3")
-def level3():
-    return render_template('Level3.html')
+@app.route("/level3/<username>")
+def level3(username):
+    return render_template('Level3.html',user=username)
 
 @app.route("/play")
 def play():
     return render_template('play.html')
 
+@app.route("/play/<username>")
+def userplay(username):
+    return render_template('userplay.html',user=username)
+
 @app.route("/learn")
 def learn():
     return render_template('learn.html')
 
+@app.route("/learn/<username>")
+def userlearn(username):
+    return render_template('userlearn.html',user=username)
 
 @app.route("/about")
 def about():
     return render_template('about.html')
 
+@app.route("/about/<username>")
+def userabout(username):
+    return render_template('userabout.html',user=username)
+
 
 @app.route("/why")
 def why():
     return render_template('why.html')
+
+@app.route("/why/<username>")
+def userwhy(username):
+    return render_template('userwhy.html',user=username)
 
 @app.route("/login")
 def login():
@@ -138,7 +172,13 @@ def logged():
             passw="*Password can't be empty"
             return render_template('login.html',username="",password=passw)
         else:
-            return redirect(url_for('home')) 
+            quer = User.query.filter_by(username=username,password=password)
+            result=quer.first()
+            if(result):
+                return redirect(url_for('userhome',username=username))
+
+            else:
+                return render_template('login.html',found="*Username & Password doesn't match")
 
 @app.route("/registered")
 def registered():
@@ -161,16 +201,19 @@ def registered():
             if(len(password)<6):
                 return render_template('Reg.html',password="*Password must be atleast 6 characters")
             elif(check=="on"):
+                data=User(username=email,firstname=first,lastname=last,fullname=first+" "+last,password=password,repassword=confirm)
+                db.session.add(data)
+                db.session.commit()
                 return redirect(url_for('login'))
             else:
                 return render_template('Reg.html',checked="*Checkbox must be checked")
         else:
             return render_template('Reg.html',confirm="*Confirm Password and Password didn't match")
 
-@app.route("/rockpaperscissor")
-def rps():
+@app.route("/rockpaperscissor/<username>")
+def rps(username):
     rockPaperScissor.rockPaperScissor()
-    return redirect(url_for('level1'))
+    return redirect(url_for('level1',username=username))
 
 @app.route("/forgot")
 def updated():
@@ -191,15 +234,23 @@ def updated():
             if(len(password)<6):
                 return render_template('forgot.html',password="*New Password must be atleast 6 characters")
             else:
-                return redirect(url_for('login'))
+                quer = User.query.filter_by(username=username,fullname=name)
+                missing=quer.first()
+                if missing:
+                    missing.password=password
+                    missing.repassword=confirm
+                    db.session.commit()
+                    return redirect(url_for('login'))
+                else:
+                    return render_template('forgot.html',found="*Username & Fullname doesn't match")
         else:
             return render_template('forgot.html',confirm="*Confirm Password and Password didn't match")
 
 
-@app.route("/numberguessing")
-def guess():
+@app.route("/numberguessing/<username>")
+def guess(username):
     guessingNumber.guessing()
-    return redirect(url_for('level1'))
+    return redirect(url_for('level1',username=username))
 
 @app.route("/snake")
 def snakegame():

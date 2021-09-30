@@ -16,17 +16,27 @@
             <div class="container-fluid">
                 <div class="row">
                   <div class="col-5">
+                    <span><div class="action">
+                      <img src="/static/images/avatar.png" onclick="menutoggle();" class="profile" />
+                    <div class="menu1"> 
+                       <ul>
+                           <li><a href="#"> My Profile</a></li>
+                           <li><a href="#"> Edit</a></li>
+                           <li><a href="#"> Settings</a></li>
+                           <li><a href="#"> Log Out</a></li>
+                       </ul>
+                    </div>
+                  </div></span>
                     <h1 class="logo">LocoPy</h1>
                 </div>
                     <div class="col-7 order-md-first">
                           <ul id="menu" >
-                              <li><a href="{{url_for('home')}}">Home</a></li>
-                              <li><a href="{{url_for('about')}}">About</a></li>
-                              <li><a href="{{url_for('why')}}">Why</a></li>
-                              <li><a href="{{url_for('play')}}">Play</a></li>
-                              <li><a href="{{url_for('learn')}}">Learn</a></li>
+                              <li><a href="{{url_for('userhome',username=user)}}">Home</a></li>
+                              <li><a href="{{url_for('userabout',username=user)}}">About</a></li>
+                              <li><a href="{{url_for('userwhy',username=user)}}">Why</a></li>
+                              <li><a href="{{url_for('userplay',username=user)}}">Play</a></li>
+                              <li><a href="{{url_for('userlearn',username=user)}}">Learn</a></li>
                               <li><a href="{{url_for('speech')}}"><img src="/static/images/mic.png" height="20px" width="20px" ></a></li>
-                              <button class="btn btn-primary "><a href="{{url_for('login')}}">Login</a></button>
                           </ul>
                     </div>
                 </div>
