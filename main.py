@@ -4,6 +4,7 @@ import speech_recognition as sr
 import pyttsx3
 import datetime
 from game import rockPaperScissor,guessingNumber,Snake
+from compiler import Compiler
 
 app=Flask(__name__,template_folder='template')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///LocoPy.db'
@@ -120,7 +121,10 @@ def userplay(username):
 
 @app.route("/learn")
 def learn():
+    Compiler.compile()
     return render_template('learn.html')
+
+
 
 @app.route("/learn/<username>")
 def userlearn(username):
@@ -142,6 +146,8 @@ def why():
 @app.route("/why/<username>")
 def userwhy(username):
     return render_template('userwhy.html',user=username)
+
+
 
 @app.route("/login")
 def login():
