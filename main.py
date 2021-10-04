@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 import speech_recognition as sr
 import pyttsx3
 import datetime
-from game import rockPaperScissor,guessingNumber,Snake
-from compiler import Compiler
+from game import rockPaperScissor,guessingNumber,Snake,Guess_the_color,tictactoe,quiz1
+from compiler import Compiler,Compiler1
 
 app=Flask(__name__,template_folder='template')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///LocoPy.db'
@@ -119,10 +119,10 @@ def play():
 def userplay(username):
     return render_template('userplay.html',user=username)
 
-@app.route("/learn")
-def learn():
-    Compiler.compile()
-    return render_template('learn.html')
+@app.route("/learn/compiler/<username>")
+def learn(username):
+    Compiler1.compile()
+    return redirect(url_for('userlearn',username=username))
 
 
 
@@ -221,6 +221,33 @@ def rps(username):
     rockPaperScissor.rockPaperScissor()
     return redirect(url_for('level1',username=username))
 
+
+@app.route("/rockpaperscissor/compiler/<username>")
+def rpscompiler(username):
+    Compiler.compile('rockPaperScissor')
+    return redirect(url_for('level1',username=username))
+
+
+@app.route("/guessthecolor/<username>")
+def color(username):
+    Guess_the_color.guessTheColor()
+    return redirect(url_for('level2',username=username))
+
+@app.route("/guessthecolor/compiler/<username>")
+def colorcompiler(username):
+    Compiler.compile('Guess_the_color')
+    return redirect(url_for('level2',username=username))
+
+@app.route("/tictactoe/<username>")
+def tictac(username):
+    tictactoe.TicTacToeGUI()
+    return redirect(url_for('level2',username=username))
+
+@app.route("/tictactoe/compiler/<username>")
+def tictaccompiler(username):
+    Compiler.compile('tictactoe')
+    return redirect(url_for('level2',username=username))
+
 @app.route("/forgot")
 def updated():
     name=request.args.get("fullname")
@@ -258,10 +285,30 @@ def guess(username):
     guessingNumber.guessing()
     return redirect(url_for('level1',username=username))
 
-@app.route("/snake")
-def snakegame():
+@app.route("/numberguessing/compiler/<username>")
+def guesscompiler(username):
+    Compiler.compile('guessingNumber')
+    return redirect(url_for('level1',username=username))
+
+@app.route("/snake/<username>")
+def snakegame(username):
     Snake.main()
-    return redirect(url_for('level2'))
+    return redirect(url_for('level3',username=username))
+
+@app.route("/snake/compiler/<username>")
+def snakegamecompiler(username):
+    Compiler.compile('Snake')
+    return redirect(url_for('level3',username=username))
+
+@app.route("/quiz/<username>")
+def quiz(username):
+    quiz1.game()
+    return redirect(url_for('level3',username=username))
+
+@app.route("/quiz/compiler/<username>")
+def quizcompiler(username):
+    Compiler.compile('quiz1')
+    return redirect(url_for('level3',username=username))
 
 
 if __name__=='__main__':

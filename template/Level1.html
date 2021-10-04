@@ -15,32 +15,27 @@
             <div class="col-8">
                 <h1 style="color:rgba(24, 24, 153,1.0);">Beginner</h1>
             </div>
-            <div class="col-4">
-                <h1 style="color:rgba(24, 24, 153,1.0);"></h1>
-            </div>
         </div>
         <div class="row inner">
             <div class="col-6">
                 <div class="card gamecard" style="width: 30rem;">
-                    <img class="card-img-top" src="/static/images/about1.svg" alt="Card image cap">
+                    <img class="card-img-top" src="/static/images/rps1.jpg" style="height: 21rem;"alt="Card image cap">
                     <div class="card-body">
                       <h3 class="card-title">Rock Paper Scissor</h3>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">Have Fun!</p>
                       <a href="{{url_for('rps',username=user)}}" class="btn btn-primary">Play</a>
-                      <a href="{{url_for('learn')}}" class="btn btn-primary">Learn</a>
-                      <a href="https://www.programiz.com/python-programming/online-compiler/"target ="_blank" class="btn btn-primary">Impliment</a>
-                    </div>
+                      <a href="{{url_for('rpscompiler',username=user)}}" class="btn btn-primary">Learn</a>
+                      </div>
                   </div>
             </div>
             <div class="col-6 ">
-                <div class="card gamecard" style="width: 30rem;">
-                    <img class="card-img-top" src="/static/images/about1.svg" alt="Card image cap">
+                <div class="card gamecard" style="width: 30rem;  ">
+                    <img class="card-img-top" src="/static/images/guess-no.png" style="height: 20rem;" alt="Card image cap">
                     <div class="card-body">
                       <h3 class="card-title">Number Guessing</h3>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">Have Fun!</p>
                       <a href="{{url_for('guess',username=user)}}" class="btn btn-primary">Play</a>
-                      <a href="#" class="btn btn-primary">Learn</a>
-                      <a href="https://www.programiz.com/python-programming/online-compiler/" target ="_blank"class="btn btn-primary">Impliment</a>
+                      <a href="{{url_for('guesscompiler',username=user)}}" class="btn btn-primary">Learn</a>
                     </div>
                 </div>
             </div>

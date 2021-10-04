@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename
 import subprocess
 
-def compile(filename):
+def compile():
     compiler = Tk()
     compiler.title('My Compiler')
 
@@ -10,8 +10,6 @@ def compile(filename):
 
 
     # save as function
-    
-
 
 
     # run code function
@@ -29,6 +27,7 @@ def compile(filename):
         code_output.delete('1.0', 'end')
         code_output.insert('1.0', output)
         code_output.insert('1.0',  error)
+        
 
     # top menu bar for compiler
     menu_bar = Menu(compiler)
@@ -36,14 +35,12 @@ def compile(filename):
 
     run_bar = Menu(menu_bar, tearoff=0)
     run_bar.add_command(label='Run', command=run)
-    run_bar.add_command(label='Exit', command=exit)
     menu_bar.add_cascade(label='Run', menu=run_bar)
     compiler.config(menu=menu_bar)
 
     #compiler input text box 
     editor = Text(height=25,width=120,bg="black",font= "times 15", fg="white",cursor="xterm white",insertbackground="white")
-    with open(f'P:/PythonProjects/LocoPy/compiler/{filename}.py', 'r') as f:
-        editor.insert(INSERT, f.read())
+    editor.insert(INSERT, "#write Your code here")
     editor.pack()
 
     #ouput box

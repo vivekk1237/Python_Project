@@ -15,32 +15,27 @@
             <div class="col-8">
                 <h1 style="color:rgba(24, 24, 153,1.0);">Advanced</h1>
             </div>
-            <div class="col-4">
-                <h1 style="color:rgba(24, 24, 153,1.0);">Your Score:</h1>
-            </div>
         </div>
         <div class="row inner">
             <div class="col-6">
                 <div class="card gamecard" style="width: 30rem;">
-                    <img class="card-img-top" src="/static/images/about1.svg" alt="Card image cap">
+                    <img class="card-img-top" src="/static/images/snake1.png" style="height: 20rem;"alt="Card image cap">
                     <div class="card-body">
-                      <h3 class="card-title">Game-1</h3>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Play</a>
-                      <a href="#" class="btn btn-primary">Learn</a>
-                      <a href="https://www.programiz.com/python-programming/online-compiler/" target ="_blank" class="btn btn-primary">Impliment</a>
-                    </div>
+                      <h3 class="card-title">Snake</h3>
+                      <p class="card-text">Have Fun!</p>
+                      <a href="{{url_for('snakegame',username=user)}}" class="btn btn-primary">Play</a>
+                      <a href="{{url_for('snakegamecompiler',username=user)}}" class="btn btn-primary">Learn</a>
+                   </div>
                   </div>
             </div>
             <div class="col-6 ">
                 <div class="card gamecard" style="width: 30rem;">
-                    <img class="card-img-top" src="/static/images/about1.svg" alt="Card image cap">
+                    <img class="card-img-top" src="/static/images/Quiz.png"style="height: 20rem;" alt="Card image cap">
                     <div class="card-body">
-                      <h3 class="card-title">Game-2</h3>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Play</a>
-                      <a href="#" class="btn btn-primary">Learn</a>
-                      <a href="https://www.programiz.com/python-programming/online-compiler/" target ="_blank" class="btn btn-primary">Impliment</a>
+                      <h3 class="card-title">Quiz</h3>
+                      <p class="card-text">Have Fun!</p>
+                      <a href="{{url_for('quiz',username=user)}}" class="btn btn-primary">Play</a>
+                      <a href="{{url_for('quizcompiler',username=user)}}" class="btn btn-primary">Learn</a>
                     </div>
                 </div>
             </div>
